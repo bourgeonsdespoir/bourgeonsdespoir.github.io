@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Bourgeons d'Espoir</title>
+  <meta name="description" content="Contactez Bourgeons d'Espoir. Association étudiante à Montpellier.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="Logo Bourgeons d'Espoir">
+        <span>Bourgeons d'Espoir</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html">Accueil</a>
+        <a href="about.html">Qui sommes-nous</a>
+        <a href="actions.html">Nos actions</a>
+        <a href="projects.html">Nos projets</a>
+        <a href="support.html">Nous soutenir</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="https://www.leetchi.com/fr/c/etudiftar-2026-1492076" target="_blank" rel="noopener" class="btn btn-primary">Je fais un don 💚</a>
+      </nav>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile">
+    <a href="index.html">Accueil</a>
+    <a href="about.html">Qui sommes-nous</a>
+    <a href="actions.html">Nos actions</a>
+    <a href="projects.html">Nos projets</a>
+    <a href="support.html">Nous soutenir</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="https://www.leetchi.com/fr/c/etudiftar-2026-1492076" target="_blank" rel="noopener" class="btn btn-primary">Je fais un don 💚</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Contact</h1>
+    <p>Écrivez-nous, on vous répond !</p>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid fade-up">
+        <!-- FORM -->
+        <div class="contact-form">
+          <h2 style="font-size: 1.4rem; color: var(--green-deeper); margin-bottom: 24px;">Envoyez-nous un message</h2>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Nom *</label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <select id="subject" name="subject">
+                <option value="">Choisir un sujet</option>
+                <option value="benevolat">Devenir bénévole</option>
+                <option value="don">Don / Cagnotte</option>
+                <option value="partenariat">Partenariat</option>
+                <option value="info">Demande d'information</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer le message</button>
+          </form>
+          <p class="form-note">Pour une réponse rapide, contactez-nous directement sur Instagram <a href="https://www.instagram.com/bourgeonsdespoir" target="_blank" rel="noopener">@bourgeonsdespoir</a></p>
+        </div>
+
+        <!-- INFO -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <span class="card-icon">📲</span>
+            <h3>Suivez-nous</h3>
+            <p><a href="https://www.instagram.com/bourgeonsdespoir" target="_blank" rel="noopener">@bourgeonsdespoir</a></p>
+          </div>
+          <div class="contact-info-card">
+            <span class="card-icon">📍</span>
+            <h3>Notre localisation</h3>
+            <p>Montpellier, Hérault (34)</p>
+          </div>
+          <div class="contact-info-card">
+            <span class="card-icon">🌙</span>
+            <h3>Etud'Iftar</h3>
+            <p><a href="https://www.google.fr/maps/place/L'oasis+Restaurant/@43.6075129,3.8805238" target="_blank" rel="noopener">Restaurant L'Oasis</a><br>9 rue de Verdun, 34000 Montpellier<br>18h - 20h pendant le Ramadan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="images/logo.jpg" alt="Logo">
+          <span>Bourgeons d'Espoir</span>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/bourgeonsdespoir" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @bourgeonsdespoir
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bourgeons d'Espoir — Tous droits réservés</p>
+        <div class="footer-links">
+          <a href="about.html">Qui sommes-nous</a>
+          <a href="actions.html">Nos actions</a>
+          <a href="support.html">Nous soutenir</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
