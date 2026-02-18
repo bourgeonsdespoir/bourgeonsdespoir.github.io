@@ -158,3 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+  // ---- PROGRESS BAR (ancienne méthode data-width) ----
+  const progressFill = document.querySelector('.progress-bar-fill[data-width]');
+  if (progressFill) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = progressFill.getAttribute('data-width');
+          progressFill.style.width = target + '%';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(progressFill);
+  }

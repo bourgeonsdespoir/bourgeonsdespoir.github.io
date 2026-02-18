@@ -1378,3 +1378,30 @@ ul { list-style: none; }
     font-size: 1rem;
   }
 }
+
+/* GRATUIT - blanc et grand dans le hero */
+.hero-gratuit {
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Contact cards - disposition verticale */
+.contact-info-full {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-info-full .contact-info-card-big {
+  margin-left: 0 !important;
+  width: 100%;
+}
