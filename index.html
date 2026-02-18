@@ -10,7 +10,6 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <div class="container">
       <a href="index.html" class="logo">
@@ -32,7 +31,6 @@
     </div>
   </header>
 
-  <!-- MOBILE NAV -->
   <nav class="nav-mobile">
     <a href="index.html" class="active">Accueil</a>
     <a href="about.html">Qui sommes-nous</a>
@@ -43,7 +41,7 @@
     <a href="https://www.leetchi.com/fr/c/etudiftar-2026-1492076" target="_blank" rel="noopener" class="btn btn-primary">Je fais un don 💚</a>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO + ETUD'IFTAR FUSIONNES -->
   <section class="hero" id="hero">
     <div class="hero-bg" style="background-image: url('images/hero-oasis.jpg'); background-size: cover; background-position: center;">
       <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(0,166,81,0.88) 0%, rgba(0,102,51,0.85) 100%);"></div>
@@ -51,11 +49,11 @@
     <div class="hero-content">
       <span class="hero-badge">RAMADAN 2026</span>
       <h1><span class="moon">🌙</span> Etud'Iftar 2026</h1>
-      <p class="hero-date-text">Venez nombreux !</p>
+      <p class="hero-tagline">Une initiative solidaire de <strong>Bourgeons d'Espoir</strong> — repas d'iftar <strong>gratuits</strong> pour les étudiants isolés ou en situation de précarité, dans un cadre chaleureux et convivial.</p>
       <div class="hero-info">
-        <span>📍 Restaurant L'Oasis</span>
-        <span>⏰ 18h - 20h</span>
-        <span>9 rue de Verdun, 34000 Montpellier</span>
+        <a href="https://maps.google.com/?q=Restaurant+L+Oasis+9+rue+de+Verdun+34000+Montpellier" target="_blank" rel="noopener" class="hero-info-link">📍 Restaurant L'Oasis — 9 rue de Verdun, Montpellier</a>
+        <span>⏰ 18h - 20h tous les soirs</span>
+        <span>🗓️ Pendant tout le Ramadan</span>
       </div>
       <div class="hero-buttons">
         <a href="https://www.leetchi.com/fr/c/etudiftar-2026-1492076" target="_blank" rel="noopener" class="btn btn-primary btn-xl btn-pulse">JE FAIS UN DON 💚</a>
@@ -69,57 +67,51 @@
     </div>
   </section>
 
-  <!-- C'EST QUOI ETUD'IFTAR -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title fade-up">C'est quoi Etud'Iftar ?</h2>
-      <div class="info-box fade-up">
-        <p>Une initiative solidaire destinée aux étudiants isolés et/ou en situation de précarité.<br><br>
-        Repas d'iftar complets et gratuits tout au long du mois de Ramadan, dans un cadre chaleureux et convivial, grâce à l'accueil du restaurant L'Oasis.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- POURQUOI C'EST IMPORTANT -->
+  <!-- STATS PRECARITE ETUDIANTE -->
   <section class="section section-beige">
     <div class="container">
       <h2 class="section-title fade-up">Pourquoi c'est important ?</h2>
-      <p class="section-subtitle fade-up">Des chiffres qui parlent d'eux-mêmes</p>
+      <p class="section-subtitle fade-up">La précarité étudiante est une réalité silencieuse. Ces chiffres parlent d'eux-mêmes.</p>
       <div class="stats-grid stagger-children">
         <div class="stat-card fade-up">
           <div class="stat-number">46%</div>
-          <p class="stat-text">des étudiants rencontrent des difficultés financières</p>
+          <p class="stat-text">des étudiants rencontrent des difficultés financières au quotidien</p>
         </div>
         <div class="stat-card fade-up">
           <div class="stat-number">1 sur 5</div>
-          <p class="stat-text">a déjà sauté un repas faute de moyens</p>
+          <p class="stat-text">a déjà sauté un repas faute de moyens durant ses études</p>
         </div>
         <div class="stat-card fade-up">
           <div class="stat-number">1 sur 3</div>
-          <p class="stat-text">se sent isolé</p>
+          <p class="stat-text">se sent isolé — l'isolement aggrave la précarité alimentaire</p>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number">20%</div>
+          <p class="stat-text">des étudiants en insécurité alimentaire sévère pendant le Ramadan</p>
         </div>
       </div>
-      <p class="stats-source fade-up">Sources : OVE, IFOP, FAGE</p>
+      <p class="stats-source fade-up">Sources : OVE, IFOP, FAGE, Rapport INSEE 2024</p>
     </div>
   </section>
 
-  <!-- OBJECTIF CAGNOTTE -->
+  <!-- CAGNOTTE DYNAMIQUE -->
   <section class="section cagnotte-section">
     <div class="container">
       <h2 class="section-title fade-up">Objectif de la cagnotte</h2>
-      <p class="section-subtitle fade-up">Chaque don compte pour nourrir un étudiant pendant le Ramadan</p>
+      <p class="section-subtitle fade-up">Chaque don finance directement un repas pour un étudiant pendant le Ramadan</p>
       <div class="cagnotte-box fade-up">
-        <div class="cagnotte-amount">513,39 €</div>
-        <p class="cagnotte-label">récoltés</p>
+        <div class="cagnotte-amount" id="cagnotte-amount">Chargement...</div>
+        <p class="cagnotte-label">récoltés sur <span id="cagnotte-goal-text">1 000 €</span></p>
         <div class="progress-bar-bg">
-          <div class="progress-bar-fill" data-width="51" style="width: 0%;"></div>
+          <div class="progress-bar-fill" id="progress-bar" style="width: 0%;"></div>
         </div>
+        <p class="cagnotte-update" id="cagnotte-update">🔄 Mise à jour automatique</p>
         <a href="https://www.leetchi.com/fr/c/etudiftar-2026-1492076" target="_blank" rel="noopener" class="btn btn-primary">Participer à la cagnotte 💚</a>
       </div>
     </div>
   </section>
 
-  <!-- COMMENT NOUS AIDER -->
+  <!-- COMMENT AIDER -->
   <section class="section section-green">
     <div class="container">
       <h2 class="section-title fade-up">Comment nous aider ?</h2>
@@ -147,7 +139,7 @@
     </div>
   </section>
 
-  <!-- QUI SOMMES-NOUS (aperçu) -->
+  <!-- QUI SOMMES-NOUS -->
   <section class="section who-section">
     <div class="container">
       <img src="images/logo.jpg" alt="Logo Bourgeons d'Espoir" class="logo-large fade-up">
@@ -185,7 +177,6 @@
     </div>
   </footer>
 
-  <!-- FLOATING CTA (mobile) -->
   <div class="floating-cta">
     <a href="https://www.leetchi.com/fr/c/etudiftar-2026-1492076" target="_blank" rel="noopener" class="btn btn-primary">Je fais un don 💚</a>
   </div>

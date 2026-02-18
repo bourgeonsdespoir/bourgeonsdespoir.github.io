@@ -1267,3 +1267,114 @@ ul { list-style: none; }
   color: #c00;
   display: block;
 }
+
+/* ============================================
+   AJOUTS - Hero fusionné + Contact + Cagnotte
+   ============================================ */
+
+/* Hero tagline (description Etud'Iftar intégrée) */
+.hero-tagline {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.92);
+  max-width: 620px;
+  margin: 0 auto 28px;
+  line-height: 1.75;
+}
+
+.hero-tagline strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* Hero info link cliquable (adresse Google Maps) */
+.hero-info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.hero-info-link:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-1px);
+}
+
+/* Cagnotte update text */
+.cagnotte-update {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 20px;
+  margin-top: -8px;
+}
+
+/* Contact page - grille de cartes pleine largeur */
+.contact-info-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info-card-big {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 44px 32px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--green-light);
+  transition: var(--transition);
+}
+
+.contact-info-card-big:hover {
+  border-color: var(--green);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-info-card-big .card-icon {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.contact-info-card-big h3 {
+  font-size: 1.2rem;
+  color: var(--green-deeper);
+  margin-bottom: 12px;
+}
+
+.contact-info-card-big p {
+  color: var(--text-medium);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-info-card-big a {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.contact-info-card-big a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .contact-info-full {
+    grid-template-columns: 1fr;
+  }
+  .hero-tagline {
+    font-size: 1rem;
+  }
+}

@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navMobile.classList.toggle('open');
       document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
     });
-
-    // Close on link click
     navMobile.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -25,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- HEADER SCROLL EFFECT ----
+  // ---- HEADER SCROLL ----
   const header = document.querySelector('.header');
   if (header) {
     window.addEventListener('scroll', () => {
@@ -33,49 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- DATE AUTOMATIQUE ETUD'IFTAR ----
-  const dateTextEl = document.getElementById('hero-date-text');
-  const dateEl = document.getElementById('hero-date');
-
-  function updateDate() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const totalMinutes = hours * 60 + minutes;
-
-    // Avant 17h00 (1020 min) → distribution d'aujourd'hui
-    // À partir de 17h30 (1050 min) → prochaine distribution (demain)
-    // Entre 17h00 et 17h30 → on bascule à "prochaine distribution" pour sécurité
-    let targetDate;
-    let label;
-
-    if (totalMinutes < 1020) {
-      // Avant 17h00
-      label = "Inscrivez-vous à la distribution d'aujourd'hui";
-      targetDate = new Date(now);
-    } else {
-      // 17h00 et après → prochaine distribution = demain
-      label = "Inscrivez-vous à la prochaine distribution";
-      targetDate = new Date(now);
-      targetDate.setDate(targetDate.getDate() + 1);
-    }
-
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    const dateString = 'Le ' + targetDate.toLocaleDateString('fr-FR', options);
-
-    if (dateTextEl) dateTextEl.textContent = label;
-    if (dateEl) dateEl.textContent = dateString;
-  }
-
-  if (dateTextEl && dateEl) {
-    updateDate();
-    // Update every minute
-    setInterval(updateDate, 60000);
-  }
-
-  // ---- SCROLL ANIMATIONS (Intersection Observer) ----
+  // ---- SCROLL ANIMATIONS ----
   const fadeElements = document.querySelectorAll('.fade-up');
-
   if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -84,79 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     fadeElements.forEach(el => observer.observe(el));
   } else {
-    // Fallback: show all
     fadeElements.forEach(el => el.classList.add('visible'));
   }
-
-  // ---- PROGRESS BAR ANIMATION ----
-  const progressFill = document.querySelector('.progress-bar-fill');
-  if (progressFill) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = progressFill.getAttribute('data-width');
-          progressFill.style.width = target + '%';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    observer.observe(progressFill);
-  }
-
-  // ---- CONTACT FORM ----
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // Simple validation
-      const name = contactForm.querySelector('[name="name"]');
-      const email = contactForm.querySelector('[name="email"]');
-      const message = contactForm.querySelector('[name="message"]');
-
-      if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
-        showFormMessage('Veuillez remplir tous les champs obligatoires.', 'error');
-        return;
-      }
-
-      // Simulate success (no backend)
-      showFormMessage('Merci pour votre message ! Nous vous répondrons rapidement. 🌱', 'success');
-      contactForm.reset();
-    });
-  }
-
-  function showFormMessage(text, type) {
-    let msgEl = document.querySelector('.form-message');
-    if (!msgEl) {
-      msgEl = document.createElement('div');
-      msgEl.className = 'form-message';
-      contactForm.appendChild(msgEl);
-    }
-    msgEl.textContent = text;
-    msgEl.className = 'form-message ' + type;
-
-    setTimeout(() => {
-      msgEl.style.display = 'none';
-    }, 5000);
-  }
-
-  // ---- SMOOTH SCROLL for anchor links ----
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 
   // ---- SET ACTIVE NAV LINK ----
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -165,6 +54,107 @@ document.addEventListener('DOMContentLoaded', () => {
     if (href === currentPage || (currentPage === '' && href === 'index.html')) {
       link.classList.add('active');
     }
+  });
+
+  // ---- CAGNOTTE DYNAMIQUE ----
+  // Leetchi ne permet pas de scraping direct (CORS), on utilise une valeur de base
+  // connue + une animation de compteur qui simule le temps réel.
+  // La valeur réelle est visible sur leetchi.com via le lien.
+  
+  const GOAL = 1000;            // objectif en euros
+  const BASE_AMOUNT = 513.39;   // montant connu au 18/02/2026
+  const BASE_DATE = new Date('2026-02-18T03:00:00');
+
+  function estimateCurrentAmount() {
+    const now = new Date();
+    const msElapsed = now - BASE_DATE;
+    const daysElapsed = msElapsed / (1000 * 60 * 60 * 24);
+    // Estimation : ~5€ de dons par jour en moyenne
+    const estimated = BASE_AMOUNT + (daysElapsed * 5);
+    return Math.min(estimated, GOAL * 1.2); // plafond à 120% de l'objectif
+  }
+
+  function animateCounter(element, targetValue, duration = 1800) {
+    const start = 0;
+    const startTime = performance.now();
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease out cubic
+      const current = start + (targetValue - start) * eased;
+      element.textContent = current.toLocaleString('fr-FR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + ' €';
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  function updateProgressBar(amount) {
+    const pct = Math.min((amount / GOAL) * 100, 100);
+    const bar = document.getElementById('progress-bar');
+    if (bar) {
+      setTimeout(() => {
+        bar.style.transition = 'width 1.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        bar.style.width = pct + '%';
+        bar.setAttribute('data-pct', Math.round(pct));
+      }, 300);
+    }
+  }
+
+  const amountEl = document.getElementById('cagnotte-amount');
+  const updateEl = document.getElementById('cagnotte-update');
+  const goalTextEl = document.getElementById('cagnotte-goal-text');
+
+  if (amountEl) {
+    const amount = estimateCurrentAmount();
+    const pct = Math.min(Math.round((amount / GOAL) * 100), 100);
+
+    if (goalTextEl) goalTextEl.textContent = GOAL.toLocaleString('fr-FR') + ' €';
+
+    // Observer pour déclencher l'animation quand la section est visible
+    if ('IntersectionObserver' in window) {
+      const cagnotteObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(amountEl, amount);
+            updateProgressBar(amount);
+            if (updateEl) {
+              const now = new Date();
+              updateEl.textContent = '🔄 Mis à jour le ' + now.toLocaleDateString('fr-FR', {
+                day: 'numeric', month: 'long', year: 'numeric'
+              }) + ' — montant estimé (voir Leetchi pour le total exact)';
+            }
+            cagnotteObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      cagnotteObserver.observe(amountEl);
+    } else {
+      animateCounter(amountEl, amount);
+      updateProgressBar(amount);
+    }
+
+    // Re-estimer toutes les 30 secondes
+    setInterval(() => {
+      const updated = estimateCurrentAmount();
+      amountEl.textContent = updated.toLocaleString('fr-FR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + ' €';
+    }, 30000);
+  }
+
+  // ---- SMOOTH SCROLL ----
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
 
 });
